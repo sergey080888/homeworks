@@ -21,10 +21,12 @@ DATA = {
         },
 
     }
+
+
 def handler(request, recipe):
     servings = int(request.GET.get('servings', 1))
     ingredients = DATA[recipe]
-    ingredients = {key: value * servings for key,value in ingredients.items()}
+    ingredients = {key: value * servings for key, value in ingredients.items()}
     context = {
       'recipe': ingredients}
     return render(request, 'calculator/index.html', context)
