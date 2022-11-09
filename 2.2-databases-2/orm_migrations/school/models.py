@@ -10,12 +10,12 @@ class Teacher(models.Model):
         verbose_name_plural = 'Учителя'
 
     def __str__(self):
-        return self.name
+        return '{0}_{1}_{2}'.format(self.id, self.name, self.subject)
 
 
 class Student(models.Model):
     name = models.CharField(max_length=30, verbose_name='Имя')
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    teachers = models.ManyToManyField(Teacher, related_name='students')
     group = models.CharField(max_length=10, verbose_name='Класс')
 
     class Meta:
@@ -23,4 +23,4 @@ class Student(models.Model):
         verbose_name_plural = 'Ученики'
 
     def __str__(self):
-        return self.name
+        return '{0}_{1}_{2}'.format(self.id, self.name, self.group)
