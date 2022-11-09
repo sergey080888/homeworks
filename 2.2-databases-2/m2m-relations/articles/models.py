@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Tag(models.Model):
-    text = models.CharField(max_length=100, verbose_name='Тег')
+    name = models.CharField(max_length=100, verbose_name='Тег')
     # articles = models.ManyToManyField(Article, through='Scope', related_name='scopes')
 
     class Meta:
@@ -10,7 +10,7 @@ class Tag(models.Model):
         verbose_name_plural = 'Теги'
 
     def __str__(self):
-        return self.text
+        return self.name
 
 
 class Article(models.Model):
