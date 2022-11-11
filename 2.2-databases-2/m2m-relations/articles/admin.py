@@ -8,12 +8,14 @@ class ScopeInlineFormset(BaseInlineFormSet):
     def clean(self):
         count = 0
         for form in self.forms:
-            if form.cleaned_data['is_main']:
+            if form.cleaned_data.get('is_main'):
                 count += 1
-                if count > 1:
-                    raise ValidationError('Только один основной')
-            else:
-                return super().clean()
+        if count > 1:
+            raise ValidationError('Только один основной')
+        elif count == 0:
+            raise ValidationError('Необходимо выбрать хотя бы один основной раздел')
+        else:
+            return super().clean()
 
 
 class ScopeInline(admin.TabularInline):
