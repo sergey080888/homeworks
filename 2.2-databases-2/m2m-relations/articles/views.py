@@ -7,7 +7,7 @@ def articles_list(request):
     # используйте этот параметр для упорядочивания результатов
     # https://docs.djangoproject.com/en/3.1/ref/models/querysets/#django.db.models.query.QuerySet.order_by
     ordering = '-published_at'
-    articles = Article.objects.all().order_by(ordering)
+    articles = Article.objects.prefetch_related('scopes').all().order_by(ordering)
     template = 'articles/news.html'
     context = {'object_list': articles}
 
