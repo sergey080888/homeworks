@@ -1,6 +1,7 @@
 # примеры API-запросов
 
 @baseUrl = http://localhost:8000/api
+###
 
 # получение датчиков
 GET {{baseUrl}}/sensors/
