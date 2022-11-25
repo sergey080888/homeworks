@@ -2,7 +2,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ModelViewSet
 
-from logistic.models import Product, Stock, StockProduct
+from logistic.models import Product, Stock
 from logistic.serializers import ProductSerializer, StockSerializer
 
 
@@ -11,7 +11,7 @@ class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['id', ]
-    search_fields = ['title', ]
+    search_fields = ['title', 'description', ]
     # при необходимости добавьте параметры фильтрации
 
 

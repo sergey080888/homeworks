@@ -26,7 +26,6 @@ class StockSerializer(serializers.ModelSerializer):
         # настройте сериализатор для склада
 
     def create(self, validated_data):
-
         positions = validated_data.pop('positions')
         stock = super().create(validated_data)
         for item in positions:
@@ -35,9 +34,18 @@ class StockSerializer(serializers.ModelSerializer):
         return stock
 
     def update(self, instance, validated_data):
+        print('++++++++++++++++++++++++++++++++++++++')
+        print('instance-->', instance)
         positions = validated_data.pop('positions')
+        print('positions-->', positions)
         stock = super().update(instance, validated_data)
+        print('stock-->', stock)
+        print('--------------------------------------')
+
         for item in positions:
-            item['stock'] = stock
-            StockProduct.objects.update_or_create(**item)
+            print('item-->', item)
+            StockProduct.objects.update_or_create(
+                stock=stock, product=item.get('product'),
+                defaults={'price': item.get('price'), 'quantity': item.get('quantity')},
+            )
         return stock
