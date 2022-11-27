@@ -38,5 +38,5 @@ Content-Type: application/json
 ###
 
 # фильтрация по дате
-GET {{baseUrl}}/advertisements/?created_at_before=2020-10-01
+GET http://localhost:8000/api/advertisements/?created_at_after=2020-10-01
 Content-Type: application/json
