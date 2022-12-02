@@ -5,8 +5,7 @@ class Student(models.Model):
 
     name = models.TextField()
 
-    birth_date = models.DateField(
-        null=True,
+    birth_date = models.DateField(null=True,
     )
 
 
